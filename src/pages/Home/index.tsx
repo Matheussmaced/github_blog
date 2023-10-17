@@ -1,7 +1,9 @@
+import { Profile } from './components/Profile'
+
 export const Home = () => {
   return (
     <>
-      <h1>Home</h1>
+      <Profile />
     </>
   )
 }
