@@ -13,7 +13,10 @@ export const GlobalStyles = createGlobalStyle`
 
     body {
       background-color: ${(props) => props.theme['base-background']};
+      
       font-size: 1rem;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 400;
     }
   }
 `
