@@ -17,6 +17,7 @@ export const GlobalStyles = createGlobalStyle`
       font-size: 1rem;
       font-family: 'Nunito', sans-serif;
       font-weight: 400;
+      color: ${(props) => props.theme.white};
     }
   }
 `
