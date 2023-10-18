@@ -1,12 +1,10 @@
 import styled from 'styled-components'
 
 export const ProfileContainer = styled.div`
-  max-width: 54rem;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
 
-  margin: -4rem auto;
   border-radius: 10px;
 
   background-color: ${(props) => props.theme['base-profile']};
@@ -23,6 +21,7 @@ export const ProfileContainer = styled.div`
 
 export const ProfileInforms = styled.div`
   display: flex;
+  align-items: center;
   gap: 2rem;
 
   span {
@@ -47,6 +46,7 @@ export const Icons = styled.div`
 
   span {
     display: flex;
+    align-items: center;
     gap: 0.5rem;
     color: ${(props) => props.theme['base-text']};
   }

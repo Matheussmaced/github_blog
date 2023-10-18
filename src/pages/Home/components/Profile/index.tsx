@@ -6,6 +6,7 @@ import {
   ProfileDescription,
   ProfileInforms,
 } from './styles'
+import { defaultTheme } from '../../../../styles/themes/default'
 
 export const Profile = () => {
   return (
@@ -25,12 +26,20 @@ export const Profile = () => {
 
             <Icons>
               <span>
-                <GithubLogo />
+                <GithubLogo
+                  size={18}
+                  weight="bold"
+                  color={defaultTheme['base-label']}
+                />
                 <p>cameronwll</p>
               </span>
 
               <span>
-                <Users />
+                <Users
+                  size={18}
+                  weight="bold"
+                  color={defaultTheme['base-label']}
+                />
                 <p>32 seguidores</p>
               </span>
             </Icons>
