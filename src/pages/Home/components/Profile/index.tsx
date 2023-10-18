@@ -1,5 +1,4 @@
 import { ArrowSquareOut, GithubLogo, Users } from 'phosphor-react'
-import photoex from '../../../../assets/photoex.svg'
 import {
   Icons,
   ProfileContainer,
@@ -8,12 +7,17 @@ import {
 } from './styles'
 import { defaultTheme } from '../../../../styles/themes/default'
 
-export const Profile = () => {
+interface UserProfileProps {
+  userProfile: string[]
+}
+
+export const Profile = ({ userProfile }: UserProfileProps) => {
+  console.log(userProfile[0])
   return (
     <>
       <ProfileContainer>
         <ProfileInforms>
-          <img src={photoex} />
+          <img src={userProfile[0]} alt="Foto do usuario" width={148} />
 
           <ProfileDescription>
             <h2>Cameron Williamson</h2>

@@ -5,24 +5,24 @@ import { HomeContainer } from './styles'
 import { useState, useEffect } from 'react'
 
 export const Home = () => {
-  const [userProfile, setUserProfile] = useState([])
+  const [userProfile, setUserProfile] = useState<string[]>([])
 
   async function loadProfileGithub() {
     const response = await fetch('https://api.github.com/users/Matheussmaced')
     const data = await response.json()
 
-    setUserProfile(data)
+    const userAvatar = data.avatar_url
+
+    setUserProfile((prevUserProfile) => [...prevUserProfile, userAvatar])
   }
 
   useEffect(() => {
     loadProfileGithub()
   }, [])
 
-  console.log(userProfile)
-
   return (
     <HomeContainer>
-      <Profile />
+      <Profile userProfile={userProfile} />
       <Publications />
     </HomeContainer>
   )
