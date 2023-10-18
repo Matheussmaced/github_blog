@@ -37,8 +37,13 @@ export const SearchBar = styled.input`
   }
 `
 
+export const InformesContainer = styled.div`
+  display: flex;
+  align-items: center;
+`
+
 export const UserPublicationsContainer = styled.div`
-  width: 45%;
+  width: 47%;
   background-color: ${(props) => props.theme['base-post']};
   margin: 3rem auto;
   padding: 2rem;

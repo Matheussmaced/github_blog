@@ -2,12 +2,12 @@ import effect1 from '../../assets/effect1.svg'
 import effect2 from '../../assets/effect2.svg'
 import logo from '../../assets/logo.svg'
 
-import { HeaderContainer } from './styles'
+import { Effects, HeaderContainer } from './styles'
 
 export const Header = () => {
   return (
     <HeaderContainer>
-      <img src={effect1} alt="linhas azuis" />
+      <Effects src={effect1} alt="linhas azuis" />
 
       <div>
         <img
@@ -16,7 +16,7 @@ export const Header = () => {
         />
       </div>
 
-      <img src={effect2} alt="linhas azuis" />
+      <Effects src={effect2} alt="linhas azuis" />
     </HeaderContainer>
   )
 }
