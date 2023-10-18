@@ -7,20 +7,23 @@ import {
 } from './styles'
 import { defaultTheme } from '../../../../styles/themes/default'
 
+import { userProfileProps } from '../..'
+
 interface UserProfileProps {
-  userProfile: string[]
+  userProfile: userProfileProps
 }
 
 export const Profile = ({ userProfile }: UserProfileProps) => {
-  console.log(userProfile[0])
+  console.log('USER', userProfile)
+
   return (
     <>
       <ProfileContainer>
         <ProfileInforms>
-          <img src={userProfile[0]} alt="Foto do usuario" width={148} />
+          <img src={userProfile.userAvatar} alt="Foto do usuario" width={148} />
 
           <ProfileDescription>
-            <h2>Cameron Williamson</h2>
+            <h2>{userProfile.userName}</h2>
 
             <span>
               Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
@@ -35,7 +38,7 @@ export const Profile = ({ userProfile }: UserProfileProps) => {
                   weight="bold"
                   color={defaultTheme['base-label']}
                 />
-                <p>cameronwll</p>
+                <p>{userProfile.nickName}</p>
               </span>
 
               <span>
@@ -44,7 +47,7 @@ export const Profile = ({ userProfile }: UserProfileProps) => {
                   weight="bold"
                   color={defaultTheme['base-label']}
                 />
-                <p>32 seguidores</p>
+                <p>{userProfile.followers}</p>
               </span>
             </Icons>
           </ProfileDescription>
