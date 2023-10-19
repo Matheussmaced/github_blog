@@ -6,6 +6,7 @@ export interface userProfileProps {
   followers: string
   nickName: string
   publicReposi: number
+  bio: string
 }
 
 interface UserProfileProviderProps {
@@ -31,6 +32,7 @@ export const UserProfileProvider = ({ children }: UserProfileProviderProps) => {
     const userName = data.name
     const followers = data.followers
     const nickName = data.login
+    const bio = data.bio
 
     const publicReposi = data.public_repos
 
@@ -40,6 +42,7 @@ export const UserProfileProvider = ({ children }: UserProfileProviderProps) => {
       followers,
       nickName,
       publicReposi,
+      bio,
     }
     setUserProfile((prevProfile) => [...prevProfile, userProfileInfos])
   }

@@ -16,6 +16,11 @@ export const ProfileContainer = styled.div`
     color: ${(props) => props.theme.blue};
     text-decoration: none;
     font-weight: bold;
+    transition: 1s;
+
+    &:hover {
+      transform: scale(1.05);
+    }
   }
 `
 

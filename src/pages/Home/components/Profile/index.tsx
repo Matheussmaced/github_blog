@@ -13,6 +13,7 @@ import {
   UserProfileContext,
   userProfileProps,
 } from '../../../../context/UserProfileContext'
+import { Link } from 'react-router-dom'
 
 export const Profile = () => {
   const userProfile = useContext(UserProfileContext) as
@@ -35,11 +36,7 @@ export const Profile = () => {
             <ProfileDescription>
               <h2>{user.userName}</h2>
 
-              <span>
-                Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
-                viverra massa quam dignissim aenean malesuada suscipit. Nunc,
-                volutpat pulvinar vel mass.
-              </span>
+              <span>{user.bio}</span>
 
               <Icons>
                 <span>
@@ -63,10 +60,9 @@ export const Profile = () => {
             </ProfileDescription>
           </ProfileInforms>
         ))}
-
-        <a href="#">
+        <Link to="https://github.com/Matheussmaced" target="_blank">
           github <ArrowSquareOut weight="bold" />
-        </a>
+        </Link>
       </ProfileContainer>
     </>
   )
