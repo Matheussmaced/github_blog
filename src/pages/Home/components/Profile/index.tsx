@@ -1,4 +1,6 @@
+import { useContext } from 'react'
 import { ArrowSquareOut, GithubLogo, Users } from 'phosphor-react'
+
 import {
   Icons,
   ProfileContainer,
@@ -7,17 +9,26 @@ import {
 } from './styles'
 import { defaultTheme } from '../../../../styles/themes/default'
 
-import { userProfileProps } from '../..'
+import {
+  UserProfileContext,
+  userProfileProps,
+} from '../../../../context/UserProfileContext'
 
-interface UserProfileProps {
-  userProfile: userProfileProps[]
-}
+export const Profile = () => {
+  const userProfile = useContext(UserProfileContext) as
+    | userProfileProps[]
+    | null
 
-export const Profile = ({ userProfile }: UserProfileProps) => {
+  if (!userProfile) {
+    return null
+  }
+
+  console.log(userProfile)
+
   return (
     <>
       <ProfileContainer>
-        {userProfile.map((user, index) => (
+        {userProfile.map((user: userProfileProps, index: number) => (
           <ProfileInforms key={index}>
             <img src={user.userAvatar} alt="Foto do usuario" width={148} />
 
