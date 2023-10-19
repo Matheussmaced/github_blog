@@ -5,6 +5,7 @@ export interface userProfileProps {
   userName: string
   followers: string
   nickName: string
+  publicReposi: number
 }
 
 interface UserProfileProviderProps {
@@ -24,13 +25,22 @@ export const UserProfileProvider = ({ children }: UserProfileProviderProps) => {
     const dataReposity = await reponseReposity.json()
     */
     const data = await response.json()
+    console.log(data)
 
     const userAvatar = data.avatar_url
     const userName = data.name
     const followers = data.followers
     const nickName = data.login
 
-    const userProfileInfos = { userAvatar, userName, followers, nickName }
+    const publicReposi = data.public_repos
+
+    const userProfileInfos = {
+      userAvatar,
+      userName,
+      followers,
+      nickName,
+      publicReposi,
+    }
     setUserProfile((prevProfile) => [...prevProfile, userProfileInfos])
   }
 
