@@ -12,12 +12,7 @@ export interface userProfileProps {
 }
 
 export const Home = () => {
-  const [userProfile, setUserProfile] = useState<userProfileProps>({
-    userAvatar: '',
-    userName: '',
-    followers: '',
-    nickName: '',
-  })
+  const [userProfile, setUserProfile] = useState<userProfileProps[]>([])
 
   async function loadProfileGithub() {
     const response = await fetch('https://api.github.com/users/Matheussmaced')
@@ -28,14 +23,13 @@ export const Home = () => {
     */
     const data = await response.json()
 
-    console.log(data)
     const userAvatar = data.avatar_url
     const userName = data.name
     const followers = data.followers
     const nickName = data.login
 
     const userProfileInfos = { userAvatar, userName, followers, nickName }
-    setUserProfile(userProfileInfos)
+    setUserProfile((prevProfile) => [...prevProfile, userProfileInfos])
   }
 
   useEffect(() => {

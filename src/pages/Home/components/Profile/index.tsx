@@ -10,48 +10,48 @@ import { defaultTheme } from '../../../../styles/themes/default'
 import { userProfileProps } from '../..'
 
 interface UserProfileProps {
-  userProfile: userProfileProps
+  userProfile: userProfileProps[]
 }
 
 export const Profile = ({ userProfile }: UserProfileProps) => {
-  console.log('USER', userProfile)
-
   return (
     <>
       <ProfileContainer>
-        <ProfileInforms>
-          <img src={userProfile.userAvatar} alt="Foto do usuario" width={148} />
+        {userProfile.map((user, index) => (
+          <ProfileInforms key={index}>
+            <img src={user.userAvatar} alt="Foto do usuario" width={148} />
 
-          <ProfileDescription>
-            <h2>{userProfile.userName}</h2>
-
-            <span>
-              Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
-              viverra massa quam dignissim aenean malesuada suscipit. Nunc,
-              volutpat pulvinar vel mass.
-            </span>
-
-            <Icons>
-              <span>
-                <GithubLogo
-                  size={18}
-                  weight="bold"
-                  color={defaultTheme['base-label']}
-                />
-                <p>{userProfile.nickName}</p>
-              </span>
+            <ProfileDescription>
+              <h2>{user.userName}</h2>
 
               <span>
-                <Users
-                  size={18}
-                  weight="bold"
-                  color={defaultTheme['base-label']}
-                />
-                <p>{userProfile.followers}</p>
+                Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
+                viverra massa quam dignissim aenean malesuada suscipit. Nunc,
+                volutpat pulvinar vel mass.
               </span>
-            </Icons>
-          </ProfileDescription>
-        </ProfileInforms>
+
+              <Icons>
+                <span>
+                  <GithubLogo
+                    size={18}
+                    weight="bold"
+                    color={defaultTheme['base-label']}
+                  />
+                  <p>{user.nickName}</p>
+                </span>
+
+                <span>
+                  <Users
+                    size={18}
+                    weight="bold"
+                    color={defaultTheme['base-label']}
+                  />
+                  <p>{user.followers}</p>
+                </span>
+              </Icons>
+            </ProfileDescription>
+          </ProfileInforms>
+        ))}
 
         <a href="#">
           github <ArrowSquareOut weight="bold" />
