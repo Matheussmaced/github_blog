@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useEffect, useState } from 'react'
+import { api } from '../lib/axios'
 
 export interface userProfileProps {
   userAvatar: string
@@ -19,22 +20,17 @@ export const UserProfileProvider = ({ children }: UserProfileProviderProps) => {
   const [userProfile, setUserProfile] = useState<userProfileProps[]>([])
 
   async function loadProfileGithub() {
-    const response = await fetch('https://api.github.com/users/Matheussmaced')
-    /* const reponseReposity = await fetch(
-      'https://api.github.com/users/Matheussmaced/subscriptions',
-    )
-    const dataReposity = await reponseReposity.json()
-    */
-    const data = await response.json()
-    console.log(data)
+    const response = await api.get('/Matheussmaced')
 
-    const userAvatar = data.avatar_url
-    const userName = data.name
-    const followers = data.followers
-    const nickName = data.login
-    const bio = data.bio
+    console.log(response.data)
 
-    const publicReposi = data.public_repos
+    const userAvatar = response.data.avatar_url
+    const userName = response.data.name
+    const followers = response.data.followers
+    const nickName = response.data.login
+    const bio = response.data.bio
+
+    const publicReposi = response.data.public_repos
 
     const userProfileInfos = {
       userAvatar,
