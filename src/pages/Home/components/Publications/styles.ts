@@ -40,6 +40,7 @@ export const SearchBar = styled.input`
 export const InformesContainer = styled.div`
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 `
 
 export const UserPublicationsContainer = styled.div`
