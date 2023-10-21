@@ -5,8 +5,12 @@ interface UserReposityProviderProps {
   children: ReactNode
 }
 
-interface userReposityType {
-  nameRepositys: string
+export interface userReposityType {
+  namesRepositys: string
+  id: number
+  name: string
+  created_at: string
+  description: string
 }
 
 export const UserReposityContext = createContext<userReposityType[] | null>(
@@ -20,13 +24,10 @@ export const UserReposityProvider = ({
 
   async function loadReposityUser() {
     const response = await api.get('/Matheussmaced/repos')
-    const nameRepositys = response.data.name
 
-    const infosRepositys = {
-      nameRepositys,
-    }
+    const infos = response.data
 
-    setUserReposity((prevUserReposity) => [...prevUserReposity, infosRepositys])
+    setUserReposity(infos)
   }
 
   useEffect(() => {

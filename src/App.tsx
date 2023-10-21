@@ -5,13 +5,16 @@ import { BrowserRouter } from 'react-router-dom'
 
 import { Router } from './components/Router'
 import { UserProfileProvider } from './context/UserProfileContext'
+import { UserReposityProvider } from './context/UserReposity'
 
 function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
         <UserProfileProvider>
-          <Router />
+          <UserReposityProvider>
+            <Router />
+          </UserReposityProvider>
         </UserProfileProvider>
 
         <GlobalStyles />

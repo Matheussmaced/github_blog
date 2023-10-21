@@ -24,8 +24,6 @@ export const Profile = () => {
     return null
   }
 
-  console.log(userProfile)
-
   return (
     <>
       <ProfileContainer>

@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 
 import {
   UserProfileContext,
@@ -13,31 +13,15 @@ import {
   UserPublicationsContainer,
   UserPublicationsDescription,
 } from './styles'
-
-interface postsType {
-  id: number
-  title: string
-  publishedAt: string
-  description: string
-}
+import {
+  UserReposityContext,
+  userReposityType,
+} from '../../../../context/UserReposity'
 
 export const Publications = () => {
-  const [posts] = useState<postsType[]>([
-    {
-      id: 1,
-      title: 'JavaScript data types and data structures',
-      publishedAt: 'Há 1 dia',
-      description:
-        'Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available in ',
-    },
-    {
-      id: 2,
-      title: 'JavaScript data types and data structures',
-      publishedAt: 'Há 1 dia',
-      description:
-        'Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available in ',
-    },
-  ])
+  const userReposity = useContext(UserReposityContext) as
+    | userReposityType[]
+    | null
 
   const userProfile = useContext(UserProfileContext) as
     | userProfileProps[]
@@ -46,6 +30,12 @@ export const Publications = () => {
   if (!userProfile) {
     return null
   }
+
+  if (!userReposity) {
+    return null
+  }
+
+  console.log(userReposity)
 
   return (
     <PublicationsContainer>
@@ -61,15 +51,15 @@ export const Publications = () => {
           </form>
 
           <InformesContainer>
-            {posts.map((informs) => (
-              <UserPublicationsContainer key={informs.id}>
+            {userReposity.map((user) => (
+              <UserPublicationsContainer key={user.id}>
                 <UsePublicationsHeader>
-                  <span>{informs.title}</span>
-                  <p>{informs.publishedAt}</p>
+                  <span>{user.name}</span>
+                  <p>{user.created_at}</p>
                 </UsePublicationsHeader>
 
                 <UserPublicationsDescription>
-                  <span>{informs.description}</span>
+                  <span>{user.description}</span>
                 </UserPublicationsDescription>
               </UserPublicationsContainer>
             ))}

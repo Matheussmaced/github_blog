@@ -22,8 +22,6 @@ export const UserProfileProvider = ({ children }: UserProfileProviderProps) => {
   async function loadProfileGithub() {
     const response = await api.get('/Matheussmaced')
 
-    console.log(response.data)
-
     const userAvatar = response.data.avatar_url
     const userName = response.data.name
     const followers = response.data.followers
