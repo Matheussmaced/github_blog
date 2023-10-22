@@ -18,6 +18,8 @@ import {
   userReposityType,
 } from '../../../../context/UserReposity'
 
+import { dateFormatter } from '../../../../utils/formatter'
+
 export const Publications = () => {
   const userReposity = useContext(UserReposityContext) as
     | userReposityType[]
@@ -55,7 +57,7 @@ export const Publications = () => {
               <UserPublicationsContainer key={user.id}>
                 <UsePublicationsHeader>
                   <span>{user.name}</span>
-                  <p>{user.created_at}</p>
+                  <p>{dateFormatter.format(new Date(user.created_at))}</p>
                 </UsePublicationsHeader>
 
                 <UserPublicationsDescription>

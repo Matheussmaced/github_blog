@@ -27,7 +27,7 @@ export const Profile = () => {
   return (
     <>
       <ProfileContainer>
-        {userProfile.map((user: userProfileProps, index: number) => (
+        {userProfile.map((user, index) => (
           <ProfileInforms key={index}>
             <img src={user.userAvatar} alt="Foto do usuario" width={148} />
 
