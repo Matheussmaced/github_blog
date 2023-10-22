@@ -41,6 +41,10 @@ export const InformesContainer = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 `
 
 export const UserPublicationsContainer = styled.div`
@@ -50,6 +54,16 @@ export const UserPublicationsContainer = styled.div`
   padding: 2rem;
 
   border-radius: 18px;
+  cursor: pointer;
+  transition: 0.5s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 `
 
 export const UsePublicationsHeader = styled.header`

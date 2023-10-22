@@ -14,3 +14,14 @@ export const Effects = styled.img`
     width: 30%;
   }
 `
+
+export const Logo = styled.img`
+  @media (max-width: 600px) {
+    width: 75%;
+  }
+`
+
+export const LogoContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`
