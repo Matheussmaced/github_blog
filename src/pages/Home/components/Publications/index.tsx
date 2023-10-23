@@ -20,6 +20,8 @@ import {
 
 import { dateFormatter } from '../../../../utils/formatter'
 
+import * as Dialog from '@radix-ui/react-dialog'
+
 export const Publications = () => {
   const userReposity = useContext(UserReposityContext) as
     | userReposityType[]
@@ -37,8 +39,6 @@ export const Publications = () => {
     return null
   }
 
-  console.log(userReposity)
-
   return (
     <PublicationsContainer>
       {userProfile.map((user, index) => (
@@ -54,16 +54,28 @@ export const Publications = () => {
 
           <InformesContainer>
             {userReposity.map((user) => (
-              <UserPublicationsContainer key={user.id}>
-                <UsePublicationsHeader>
-                  <span>{user.name}</span>
-                  <p>{dateFormatter.format(new Date(user.created_at))}</p>
-                </UsePublicationsHeader>
+              <Dialog.Root key={user.id}>
+                <Dialog.Trigger>
+                  <UserPublicationsContainer>
+                    <UsePublicationsHeader>
+                      <span>{user.name}</span>
+                      <p>{dateFormatter.format(new Date(user.created_at))}</p>
+                    </UsePublicationsHeader>
 
-                <UserPublicationsDescription>
-                  <span>{user.description}</span>
-                </UserPublicationsDescription>
-              </UserPublicationsContainer>
+                    <Dialog.Portal>
+                      <Dialog.Content>
+                        <Dialog.Title>
+                          <h1>teste</h1>
+                        </Dialog.Title>
+                      </Dialog.Content>
+                    </Dialog.Portal>
+
+                    <UserPublicationsDescription>
+                      <span>{user.description}</span>
+                    </UserPublicationsDescription>
+                  </UserPublicationsContainer>
+                </Dialog.Trigger>
+              </Dialog.Root>
             ))}
           </InformesContainer>
         </div>

@@ -3,6 +3,8 @@ import styled from 'styled-components'
 export const PublicationsContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `
 
 export const PublicationSubtitle = styled.div`
@@ -38,17 +40,32 @@ export const SearchBar = styled.input`
 `
 
 export const InformesContainer = styled.div`
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
 
   @media (max-width: 600px) {
-    flex-direction: column;
+    grid-template-columns: 1fr;
+  }
+
+  button {
+    display: flex;
+    background-color: transparent;
+    width: 100%;
+    margin: 0 auto;
+
+    border: none;
+    cursor: pointer;
+    color: ${(props) => props.theme.white};
+
+    &:focus {
+      box-shadow: none;
+    }
   }
 `
 
 export const UserPublicationsContainer = styled.div`
-  width: 47%;
+  width: 100%;
   background-color: ${(props) => props.theme['base-post']};
   margin: 3rem auto;
   padding: 2rem;
