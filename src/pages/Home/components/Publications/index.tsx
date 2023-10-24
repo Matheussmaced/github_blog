@@ -5,13 +5,21 @@ import {
   userProfileProps,
 } from '../../../../context/UserProfileContext'
 import {
+  Buttons,
+  Close,
+  Content,
+  Icons,
+  Informations,
   InformesContainer,
+  LinkContainer,
+  Overlay,
   PublicationSubtitle,
   PublicationsContainer,
   SearchBar,
   UsePublicationsHeader,
   UserPublicationsContainer,
   UserPublicationsDescription,
+  ViewButton,
 } from './styles'
 import {
   UserReposityContext,
@@ -21,6 +29,13 @@ import {
 import { dateFormatter } from '../../../../utils/formatter'
 
 import * as Dialog from '@radix-ui/react-dialog'
+import {
+  ArrowCircleUpRight,
+  CalendarBlank,
+  GithubLogo,
+  X,
+} from 'phosphor-react'
+import { defaultTheme } from '../../../../styles/themes/default'
 
 export const Publications = () => {
   const userReposity = useContext(UserReposityContext) as
@@ -39,6 +54,8 @@ export const Publications = () => {
     return null
   }
 
+  console.log(userReposity)
+
   return (
     <PublicationsContainer>
       {userProfile.map((user, index) => (
@@ -54,28 +71,60 @@ export const Publications = () => {
 
           <InformesContainer>
             {userReposity.map((user) => (
-              <Dialog.Root key={user.id}>
-                <Dialog.Trigger>
-                  <UserPublicationsContainer>
-                    <UsePublicationsHeader>
-                      <span>{user.name}</span>
-                      <p>{dateFormatter.format(new Date(user.created_at))}</p>
-                    </UsePublicationsHeader>
+              <UserPublicationsContainer key={user.id}>
+                <UsePublicationsHeader>
+                  <span>{user.name}</span>
+                  <p>{dateFormatter.format(new Date(user.created_at))}</p>
+                </UsePublicationsHeader>
 
-                    <Dialog.Portal>
-                      <Dialog.Content>
+                <UserPublicationsDescription>
+                  <span>{user.description}</span>
+                </UserPublicationsDescription>
+                <Dialog.Root>
+                  <Dialog.Trigger asChild>
+                    <ViewButton>
+                      <span>ABRIR {<ArrowCircleUpRight size={22} />}</span>
+                    </ViewButton>
+                  </Dialog.Trigger>
+                  <Dialog.Portal>
+                    <Overlay />
+                    <Content>
+                      <Buttons>
+                        <Close>
+                          <X
+                            color={defaultTheme.blue}
+                            size={22}
+                            weight="bold"
+                          />
+                        </Close>
+
+                        <LinkContainer to="#">
+                          <span>VER NO GITHUB</span>
+                          <ArrowCircleUpRight size={22} />
+                        </LinkContainer>
+                      </Buttons>
+
+                      <header>
                         <Dialog.Title>
-                          <h1>teste</h1>
+                          <span>{user.name}</span>
                         </Dialog.Title>
-                      </Dialog.Content>
-                    </Dialog.Portal>
+                      </header>
 
-                    <UserPublicationsDescription>
-                      <span>{user.description}</span>
-                    </UserPublicationsDescription>
-                  </UserPublicationsContainer>
-                </Dialog.Trigger>
-              </Dialog.Root>
+                      <Informations>
+                        <Icons>
+                          <GithubLogo size={22} />
+                          {userProfile.map((user) => user.nickName)}
+                        </Icons>
+
+                        <Icons>
+                          <CalendarBlank size={22} />
+                          <span>Há um dia</span>
+                        </Icons>
+                      </Informations>
+                    </Content>
+                  </Dialog.Portal>
+                </Dialog.Root>
+              </UserPublicationsContainer>
             ))}
           </InformesContainer>
         </div>

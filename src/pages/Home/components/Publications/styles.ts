@@ -1,3 +1,5 @@
+import * as Dialog from '@radix-ui/react-dialog'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const PublicationsContainer = styled.div`
@@ -37,6 +39,10 @@ export const SearchBar = styled.input`
   &::placeholder {
     color: ${(props) => props.theme['base-label']};
   }
+
+  &:focus {
+    box-shadow: 0 0 0 2px ${(props) => props.theme.blue};
+  }
 `
 
 export const InformesContainer = styled.div`
@@ -71,7 +77,7 @@ export const UserPublicationsContainer = styled.div`
   padding: 2rem;
 
   border-radius: 18px;
-  cursor: pointer;
+
   transition: 0.5s;
 
   &:hover {
@@ -104,4 +110,78 @@ export const UserPublicationsDescription = styled.div`
   span {
     color: ${(props) => props.theme['base-text']};
   }
+`
+
+export const Content = styled(Dialog.Content)`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem;
+
+  width: 70%;
+  height: 50%;
+  border-radius: 10px;
+
+  background-color: ${(props) => props.theme['base-profile']};
+`
+
+export const Close = styled(Dialog.Close)`
+  margin-bottom: 1.25rem;
+
+  background-color: transparent;
+  border: none;
+  border-radius: 2px;
+
+  cursor: pointer;
+`
+
+export const ViewButton = styled.button`
+  span {
+    padding: 0.3rem;
+    margin-top: 1rem;
+
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+
+    gap: 0.3rem;
+  }
+`
+
+export const Buttons = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+export const LinkContainer = styled(Link)`
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+
+  gap: 0.5rem;
+  color: ${(props) => props.theme.blue};
+`
+
+export const Informations = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  margin-top: 0.5rem;
+  color: ${(props) => props.theme['base-label']};
+`
+
+export const Icons = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`
+
+export const Overlay = styled(Dialog.Overlay)`
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75);
 `
