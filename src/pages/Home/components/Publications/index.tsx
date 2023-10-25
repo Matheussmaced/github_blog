@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { differenceInHours } from 'date-fns'
 
 import {
   UserProfileContext,
@@ -122,7 +123,23 @@ export const Publications = () => {
 
                         <Icons>
                           <CalendarBlank size={22} />
-                          <span>Há um dia</span>
+                          <span>
+                            Há{' '}
+                            {differenceInHours(
+                              new Date(),
+                              new Date(user.created_at),
+                            ) >= 24
+                              ? `${Math.floor(
+                                  differenceInHours(
+                                    new Date(),
+                                    new Date(user.created_at),
+                                  ) / 24,
+                                )} dias`
+                              : `${differenceInHours(
+                                  new Date(),
+                                  new Date(user.created_at),
+                                )} horas`}
+                          </span>
                         </Icons>
                       </Informations>
 
