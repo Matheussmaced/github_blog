@@ -119,11 +119,15 @@ export const Content = styled(Dialog.Content)`
   transform: translate(-50%, -50%);
   padding: 2rem;
 
-  width: 70%;
-  height: 50%;
+  width: 50%;
+
   border-radius: 10px;
 
   background-color: ${(props) => props.theme['base-profile']};
+
+  @media (max-width: 800px) {
+    width: 90%;
+  }
 `
 
 export const Close = styled(Dialog.Close)`
@@ -176,6 +180,18 @@ export const Icons = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+`
+
+export const Description = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+
+  gap: 0.5rem;
+
+  strong {
+    color: ${(props) => props.theme.blue};
+  }
 `
 
 export const Overlay = styled(Dialog.Overlay)`

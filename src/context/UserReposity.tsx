@@ -11,6 +11,9 @@ export interface userReposityType {
   name: string
   created_at: string
   description: string
+  full_name: string
+  language: string
+  visibility: string
 }
 
 export const UserReposityContext = createContext<userReposityType[] | null>(

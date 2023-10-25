@@ -8,6 +8,7 @@ import {
   Buttons,
   Close,
   Content,
+  Description,
   Icons,
   Informations,
   InformesContainer,
@@ -98,7 +99,10 @@ export const Publications = () => {
                           />
                         </Close>
 
-                        <LinkContainer to="#">
+                        <LinkContainer
+                          to={`https://github.com/${user.full_name}`}
+                          target="_blank"
+                        >
                           <span>VER NO GITHUB</span>
                           <ArrowCircleUpRight size={22} />
                         </LinkContainer>
@@ -121,6 +125,17 @@ export const Publications = () => {
                           <span>Há um dia</span>
                         </Icons>
                       </Informations>
+
+                      <Description>
+                        <span>
+                          Linguagem predominante:
+                          <strong> {user.language}</strong>
+                        </span>
+
+                        <span>
+                          Visibilidade: <strong>{user.visibility}</strong>
+                        </span>
+                      </Description>
                     </Content>
                   </Dialog.Portal>
                 </Dialog.Root>
