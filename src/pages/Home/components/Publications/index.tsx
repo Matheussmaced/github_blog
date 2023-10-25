@@ -1,6 +1,8 @@
 import { useContext } from 'react'
 import { differenceInHours } from 'date-fns'
 
+import { useForm } from 'react-hook-form'
+
 import {
   UserProfileContext,
   userProfileProps,
@@ -39,7 +41,13 @@ import {
 } from 'phosphor-react'
 import { defaultTheme } from '../../../../styles/themes/default'
 
+interface FormData {
+  user: string
+}
+
 export const Publications = () => {
+  const { handleSubmit, register } = useForm<FormData>()
+
   const userReposity = useContext(UserReposityContext) as
     | userReposityType[]
     | null
@@ -58,6 +66,10 @@ export const Publications = () => {
 
   console.log(userReposity)
 
+  function onSubmit(data: FormData) {
+    return console.log(data)
+  }
+
   return (
     <PublicationsContainer>
       {userProfile.map((user, index) => (
@@ -67,8 +79,12 @@ export const Publications = () => {
             <p>{user.publicReposi} publicações</p>
           </PublicationSubtitle>
 
-          <form>
-            <SearchBar type="text" placeholder="Buscar conteúdo" />
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <SearchBar
+              type="text"
+              placeholder="Buscar conteúdo"
+              {...register('user', { required: true })}
+            />
           </form>
 
           <InformesContainer>
