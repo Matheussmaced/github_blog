@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { differenceInHours } from 'date-fns'
 
 import { useForm } from 'react-hook-form'
@@ -42,15 +42,17 @@ import {
 import { defaultTheme } from '../../../../styles/themes/default'
 
 interface FormData {
-  user: string
+  value: string
 }
 
 export const Publications = () => {
-  const { handleSubmit, register } = useForm<FormData>()
+  const [searchResults, setSearchResults] = useState<userReposityType[] | null>(
+    null,
+  )
 
-  const userReposity = useContext(UserReposityContext) as
-    | userReposityType[]
-    | null
+  const { register } = useForm<FormData>()
+
+  const userReposity = useContext(UserReposityContext) as userReposityType[]
 
   const userProfile = useContext(UserProfileContext) as
     | userProfileProps[]
@@ -64,10 +66,20 @@ export const Publications = () => {
     return null
   }
 
-  console.log(userReposity)
+  function filterUserReposity(searchValue: string) {
+    if (searchValue) {
+      return userReposity.filter((user) =>
+        user.name.toLowerCase().includes(searchValue),
+      )
+    }
+    return userReposity
+  }
 
-  function onSubmit(data: FormData) {
-    return console.log(data)
+  function handleSearch(data: FormData) {
+    const searchValue = data.value.toLowerCase()
+    const filteredReposity = filterUserReposity(searchValue)
+
+    setSearchResults(filteredReposity)
   }
 
   return (
@@ -79,16 +91,17 @@ export const Publications = () => {
             <p>{user.publicReposi} publicações</p>
           </PublicationSubtitle>
 
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form>
             <SearchBar
               type="text"
               placeholder="Buscar conteúdo"
-              {...register('user', { required: true })}
+              {...register('value', { required: true })}
+              onChange={(e) => handleSearch({ value: e.target.value })}
             />
           </form>
 
           <InformesContainer>
-            {userReposity.map((user) => (
+            {(searchResults || userReposity).map((user) => (
               <UserPublicationsContainer key={user.id}>
                 <UsePublicationsHeader>
                   <span>{user.name}</span>

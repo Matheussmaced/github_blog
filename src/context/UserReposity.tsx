@@ -16,9 +16,7 @@ export interface userReposityType {
   visibility: string
 }
 
-export const UserReposityContext = createContext<userReposityType[] | null>(
-  null,
-)
+export const UserReposityContext = createContext<userReposityType[]>([])
 
 export const UserReposityProvider = ({
   children,
